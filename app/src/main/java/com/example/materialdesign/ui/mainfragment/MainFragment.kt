@@ -117,7 +117,7 @@ class MainFragment : Fragment() {
             }
 
             android.R.id.home -> {
-                showToast("Click hamburger menu")
+                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "test")
             }
         }
         return super.onOptionsItemSelected(item)
