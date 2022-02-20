@@ -1,4 +1,4 @@
-package com.example.materialdesign.repository
+package com.example.materialdesign.model.repository
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit

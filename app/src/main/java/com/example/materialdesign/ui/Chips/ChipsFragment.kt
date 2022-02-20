@@ -1,5 +1,6 @@
 package com.example.materialdesign.ui.Chips
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,24 +31,24 @@ class ChipsFragment : Fragment() {
         _binding = null
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
             binding.chipGroup.findViewById<Chip>(checkedId)?.let { it ->
-                Toast.makeText(requireContext(), "${it.text} ${checkedId}", Toast.LENGTH_SHORT)
-                    .show()
+                toast("${it.text} ${checkedId}")
             }
         }
 
         binding.chipEntry.setOnCloseIconClickListener {
-            Toast.makeText(requireContext(), "chipEntry close", Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.text_closed))
         }
 
-        binding.tabs.getTabAt(0)!!.text = "Сегодня"
+        binding.tabs.getTabAt(0)!!.text = getString(R.string.text_today)
         binding.tabs.getTabAt(0)!!.icon = resources.getDrawable(R.drawable.ic_baseline_search_24)
-        binding.tabs.getTabAt(1)!!.text = "Вчера"
+        binding.tabs.getTabAt(1)!!.text = getString(R.string.text_yesterday)
         binding.tabs.getTabAt(1)!!.icon = resources.getDrawable(R.drawable.ic_baseline_favorite_24)
-        binding.tabs.getTabAt(2)!!.text = "Позавчера"
+        binding.tabs.getTabAt(2)!!.text = getString(R.string.text_he_day_before_yesterday)
         binding.tabs.getTabAt(2)!!.icon = resources.getDrawable(R.drawable.ic_baseline_add_24)
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -58,6 +59,10 @@ class ChipsFragment : Fragment() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+    }
+
+    private fun Fragment.toast(text: String?) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

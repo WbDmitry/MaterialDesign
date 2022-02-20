@@ -1,6 +1,4 @@
-package com.example.materialdesign
-
-import com.example.materialdesign.repository.PDOServerResponse
+package com.example.materialdesign.model.repository
 
 sealed class AppState {
     data class Success(val pdoServerResponse: PDOServerResponse) : AppState()

@@ -3,10 +3,10 @@ package com.example.materialdesign.ui.mainfragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.materialdesign.AppState
+import com.example.materialdesign.model.repository.AppState
 import com.example.materialdesign.BuildConfig
-import com.example.materialdesign.repository.PDORetrofitImpl
-import com.example.materialdesign.repository.PDOServerResponse
+import com.example.materialdesign.model.repository.PDORetrofitImpl
+import com.example.materialdesign.model.repository.PDOServerResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -13,4 +13,8 @@
     <string name="empty_one">navigation_one</string>
     <string name="empty_two">navigation_two</string>
     <string name="content_вescription_floatingactionbutton">FloatingActionButton</string>
+    <string name="text_today">Сегодня</string>
+    <string name="text_yesterday">Вчера</string>
+    <string name="text_he_day_before_yesterday">Позавчера</string>
+    <string name="text_closed">chipEntry close</string>
 </resources>

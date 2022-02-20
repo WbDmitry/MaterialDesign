@@ -11,11 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import com.example.materialdesign.AppState
+import com.example.materialdesign.model.repository.AppState
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.ui.Chips.ChipsFragment
 import com.example.materialdesign.ui.MainActivity
+import com.example.materialdesign.ui.nav_fragment.BottomNavigationDrawerFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
