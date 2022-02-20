@@ -14,6 +14,7 @@ import coil.load
 import com.example.materialdesign.AppState
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
+import com.example.materialdesign.ui.Chips.ChipsFragment
 import com.example.materialdesign.ui.MainActivity
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -103,7 +104,6 @@ class MainFragment : Fragment() {
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 binding.fab.setImageResource(R.drawable.ic_baseline_add_24)
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
-
             }
             isMain = !isMain
         }
@@ -134,7 +134,7 @@ class MainFragment : Fragment() {
             }
 
             R.id.app_bar_fav -> {
-                showToast("Click fav")
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, ChipsFragment.newInstance()).commit()
             }
 
             android.R.id.home -> {
