@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -14,6 +15,7 @@ import com.example.materialdesign.AppState
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.ui.MainActivity
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainFragment : Fragment() {
@@ -25,8 +27,9 @@ class MainFragment : Fragment() {
     private val viewModel: MainFragmentViewModel by lazy {
         ViewModelProvider(this).get(MainFragmentViewModel::class.java)
     }
-
     lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+
+    var isMain = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,7 +91,25 @@ class MainFragment : Fragment() {
 
         (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
+
+        binding.fab.setOnClickListener {
+            if (isMain) {
+                binding.bottomAppBar.navigationIcon = null
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                binding.fab.setImageResource(R.drawable.ic_baseline_arrow_back_24)
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_empty)
+            }else {
+                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_menu_24)
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                binding.fab.setImageResource(R.drawable.ic_baseline_add_24)
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
+
+            }
+            isMain = !isMain
+        }
     }
+
+
 
     private fun renderData(appState: AppState) {
         when (appState) {
