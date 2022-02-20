@@ -10,15 +10,14 @@ import com.example.materialdesign.repository.PDOServerResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class MainFragmentViewModel(
-    private val liveDate: MutableLiveData<AppState> = MutableLiveData(),
+    private val liveData: MutableLiveData<AppState> = MutableLiveData(),
     private val pdoRetrofitImpl: PDORetrofitImpl = PDORetrofitImpl()
 ) : ViewModel() {
-    fun getData(): LiveData<AppState> = liveDate
+    fun getData(): LiveData<AppState> = liveData
     fun sendRequest() {
-        liveDate.postValue(AppState.Loading(null))
+        liveData.postValue(AppState.Loading(null))
         pdoRetrofitImpl.getRetrofitImpl().getPictureOfTheDay(BuildConfig.NASA_API_KEY)
             .enqueue(object : Callback<PDOServerResponse> {
                 override fun onResponse(
@@ -27,17 +26,24 @@ class MainFragmentViewModel(
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         response.body()?.let {
-                            liveDate.postValue(AppState.Success(it))
+                            liveData.postValue(AppState.Success(it))
                         }
 
                     } else {
-                        // TODO HW вывести ошибку
+                        val message = response.message()
+                        if (message.isNullOrEmpty()) {
+                            liveData.value =
+                                AppState.Error(Throwable("Неопознанная ошибка"))
+                        } else {
+                            liveData.value =
+                                AppState.Error(Throwable(message))
+                        }
                     }
 
                 }
 
                 override fun onFailure(call: Call<PDOServerResponse>, t: Throwable) {
-                    // TODO HW
+                    liveData.value = AppState.Error(t)
                 }
             }
             )

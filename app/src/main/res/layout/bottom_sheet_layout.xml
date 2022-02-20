@@ -4,17 +4,17 @@
         android:id="@+id/bottom_sheet_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f6f6fa"
+        android:background="@color/red_100"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="150dp"
+        app:behavior_peekHeight="@dimen/behavior_peek_height_150"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
             android:id="@+id/bottom_sheet_line"
-            android:layout_width="25dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="#663b4351"
+            android:layout_width="@dimen/width_line_25dp"
+            android:layout_height="@dimen/layout_height_1dp"
+            android:layout_marginTop="@dimen/margin_top_10dp"
+            android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,24 +23,26 @@
             android:id="@+id/bottom_sheet_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textColor="#000"
+            android:layout_marginTop="@dimen/margin_top_5dp"
+            android:paddingStart="@dimen/padding_start_10dp"
+            android:paddingEnd="@dimen/padding_end_10dp"
+            android:textColor="@color/black"
             android:textStyle="bold"
+            android:textSize="@dimen/text_size_title_bottom_sheet_21sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_line"
-            android:text="Two Clusters and a Comet" />
+            android:text="@string/empty_text_title" />
 
     <TextView
             android:id="@+id/bottom_sheet_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/padding_start_10dp"
+            android:paddingEnd="@dimen/padding_end_10dp"
+            android:textSize="@dimen/text_size_description_bottom_sheet_16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_header"
-            android:text="This lovely starfield spans some four full moons." />
+            android:text="@string/empty_text_description" />
 </androidx.constraintlayout.widget.ConstraintLayout>

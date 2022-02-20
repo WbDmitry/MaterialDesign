@@ -28,9 +28,8 @@ class MainFragment : Fragment() {
     private val viewModel: MainFragmentViewModel by lazy {
         ViewModelProvider(this).get(MainFragmentViewModel::class.java)
     }
-    lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    var isMain = true
+    lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +50,7 @@ class MainFragment : Fragment() {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
                     Uri.parse(
-                        "https://en.wikipedia.org/wiki/" +
+                        URL_WIKI +
                                 binding.inputEditText.text.toString()
                     )
             })
@@ -65,28 +64,28 @@ class MainFragment : Fragment() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_COLLAPSED -> {
-
+                        toast("STATE_COLLAPSED")
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
-
+                        toast("STATE_DRAGGING")
                     }
                     BottomSheetBehavior.STATE_EXPANDED -> {
-
+                        toast("STATE_EXPANDED")
                     }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-
+                        toast("STATE_HALF_EXPANDED")
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {
-
+                        toast("STATE_HIDDEN")
                     }
                     BottomSheetBehavior.STATE_SETTLING -> {
-
+                        toast("STATE_SETTLING")
                     }
                 }
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.d("mylogs", "slideOffset $slideOffset")
+                Log.d(LOG_STRING, "slideOffset $slideOffset")
             }
         })
 
@@ -99,8 +98,9 @@ class MainFragment : Fragment() {
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                 binding.fab.setImageResource(R.drawable.ic_baseline_arrow_back_24)
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_empty)
-            }else {
-                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_menu_24)
+            } else {
+                binding.bottomAppBar.navigationIcon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_menu_24)
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 binding.fab.setImageResource(R.drawable.ic_baseline_add_24)
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
@@ -109,20 +109,20 @@ class MainFragment : Fragment() {
         }
     }
 
-
-
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Error -> {
-
+                toast(appState.error.message)
             }
             is AppState.Loading -> {
-
+                //показывается лоадер
             }
             is AppState.Success -> {
                 binding.imageView.load(appState.pdoServerResponse.url) {
                     placeholder(R.drawable.ic_launcher_foreground)
                 }
+                binding.included.bottomSheetHeader.text = appState.pdoServerResponse.title
+                binding.included.bottomSheetDescription.text = appState.pdoServerResponse.explanation
             }
         }
     }
@@ -130,27 +130,37 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_settings -> {
-                showToast("Click settings")
+                toast(LOG_STRING)
             }
 
             R.id.app_bar_fav -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, ChipsFragment.newInstance()).commit()
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.container,
+                        ChipsFragment.newInstance()
+                    ).commit()
             }
 
             android.R.id.home -> {
-                BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "test")
+                BottomNavigationDrawerFragment()
+                    .show(
+                        requireActivity()
+                            .supportFragmentManager,
+                        LOG_STRING
+                    )
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showToast (text: String) {
-        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_bottom_bar, menu)
+    }
+
+    private fun Fragment.toast(text: String?) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {
@@ -160,5 +170,10 @@ class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
+
+        var isMain = true
+
+        const val URL_WIKI = "https://en.wikipedia.org/wiki/"
+        const val LOG_STRING = "mylogs"
     }
 }
