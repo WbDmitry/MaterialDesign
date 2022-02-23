@@ -30,4 +30,16 @@
     <style name="MaterialDesignGreen" parent="Theme.MaterialDesignBase">
         <item name="accentColor">@color/green</item>
     </style>
+
+    <style name="textTitleBottomSheet" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_title_bottom_sheet_21sp</item>
+        <item name="android:textColor">?colorPrimary</item>
+    </style>
+
+    <style name="textDescriptionBottomSheet" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">@dimen/text_size_description_bottom_sheet_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
