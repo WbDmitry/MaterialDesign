@@ -1,9 +1,8 @@
-package com.example.materialdesign.ui.mainfragment
+package com.example.materialdesign.ui.main
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,12 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import com.example.materialdesign.model.repository.AppState
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
-import com.example.materialdesign.ui.сhips.ChipsFragment
+import com.example.materialdesign.model.repository.AppState
 import com.example.materialdesign.ui.MainActivity
-import com.example.materialdesign.ui.navfragment.BottomNavigationDrawerFragment
+import com.example.materialdesign.ui.navigation.BottomNavigationDrawerFragment
+import com.example.materialdesign.ui.settings.SettingsFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -123,7 +122,8 @@ class MainFragment : Fragment() {
                     placeholder(R.drawable.ic_launcher_foreground)
                 }
                 binding.included.bottomSheetHeader.text = appState.pdoServerResponse.title
-                binding.included.bottomSheetDescription.text = appState.pdoServerResponse.explanation
+                binding.included.bottomSheetDescription.text =
+                    appState.pdoServerResponse.explanation
             }
         }
     }
@@ -131,18 +131,18 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_settings -> {
-                toast(LOG_STRING)
-            }
-
-            R.id.app_bar_fav -> {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
                     .replace(
                         R.id.container,
-                        ChipsFragment.newInstance()
+                        SettingsFragment.newInstance()
                     )
                     .addToBackStack("")
                     .commit()
+            }
+
+            R.id.app_bar_fav -> {
+
             }
 
             android.R.id.home -> {

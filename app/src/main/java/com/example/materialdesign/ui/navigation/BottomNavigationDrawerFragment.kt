@@ -1,4 +1,4 @@
-package com.example.materialdesign.ui.navfragment
+package com.example.materialdesign.ui.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater

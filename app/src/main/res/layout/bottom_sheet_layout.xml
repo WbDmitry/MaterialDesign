@@ -4,8 +4,8 @@
         android:id="@+id/bottom_sheet_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/red_100"
         app:behavior_hideable="false"
+        android:background="@color/white"
         app:behavior_peekHeight="@dimen/behavior_peek_height_150"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
