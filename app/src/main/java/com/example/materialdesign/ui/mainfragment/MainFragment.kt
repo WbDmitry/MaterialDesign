@@ -14,9 +14,9 @@ import coil.load
 import com.example.materialdesign.model.repository.AppState
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
-import com.example.materialdesign.ui.Chips.ChipsFragment
+import com.example.materialdesign.ui.сhips.ChipsFragment
 import com.example.materialdesign.ui.MainActivity
-import com.example.materialdesign.ui.nav_fragment.BottomNavigationDrawerFragment
+import com.example.materialdesign.ui.navfragment.BottomNavigationDrawerFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -60,35 +60,35 @@ class MainFragment : Fragment() {
         bottomSheetBehavior = BottomSheetBehavior.from(binding.included.bottomSheetContainer)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
 
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        toast("STATE_COLLAPSED")
-                    }
-                    BottomSheetBehavior.STATE_DRAGGING -> {
-                        toast("STATE_DRAGGING")
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                        toast("STATE_EXPANDED")
-                    }
-                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-                        toast("STATE_HALF_EXPANDED")
-                    }
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-                        toast("STATE_HIDDEN")
-                    }
-                    BottomSheetBehavior.STATE_SETTLING -> {
-                        toast("STATE_SETTLING")
-                    }
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.d(LOG_STRING, "slideOffset $slideOffset")
-            }
-        })
+//        bottomSheetBehavior.addBottomSheetCallback(object :
+//            BottomSheetBehavior.BottomSheetCallback() {
+//            override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                when (newState) {
+//                    BottomSheetBehavior.STATE_COLLAPSED -> {
+//                        toast("STATE_COLLAPSED")
+//                    }
+//                    BottomSheetBehavior.STATE_DRAGGING -> {
+//                        toast("STATE_DRAGGING")
+//                    }
+//                    BottomSheetBehavior.STATE_EXPANDED -> {
+//                        toast("STATE_EXPANDED")
+//                    }
+//                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+//                        toast("STATE_HALF_EXPANDED")
+//                    }
+//                    BottomSheetBehavior.STATE_HIDDEN -> {
+//                        toast("STATE_HIDDEN")
+//                    }
+//                    BottomSheetBehavior.STATE_SETTLING -> {
+//                        toast("STATE_SETTLING")
+//                    }
+//                }
+//            }
+//
+//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//                Log.d(LOG_STRING, "slideOffset $slideOffset")
+//            }
+//        })
 
         (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
@@ -140,7 +140,9 @@ class MainFragment : Fragment() {
                     .replace(
                         R.id.container,
                         ChipsFragment.newInstance()
-                    ).commit()
+                    )
+                    .addToBackStack("")
+                    .commit()
             }
 
             android.R.id.home -> {

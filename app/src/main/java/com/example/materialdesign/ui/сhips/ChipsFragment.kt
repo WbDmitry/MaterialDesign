@@ -1,4 +1,4 @@
-package com.example.materialdesign.ui.Chips
+package com.example.materialdesign.ui.сhips
 
 import android.annotation.SuppressLint
 import android.os.Bundle
