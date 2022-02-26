@@ -17,4 +17,8 @@
     <string name="text_yesterday">Вчера</string>
     <string name="text_he_day_before_yesterday">Позавчера</string>
     <string name="text_closed">chipEntry close</string>
+    <string name="text_setting_heading">Тема приложения:</string>
+    <string name="theme_name_1">Theme 1</string>
+    <string name="theme_name_2">Theme 2</string>
+    <string name="theme_name_3">Theme 3</string>
 </resources>

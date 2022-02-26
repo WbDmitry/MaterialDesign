@@ -37,7 +37,7 @@
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tool:background="@color/purple_500"
+                tool:background="?attr/accentColor"
                 android:layout_marginTop="@dimen/margin_top"
                 android:contentDescription="@string/photo_of_the_day_stub"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,19 +55,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:backgroundTint="@color/red_600"
+            android:backgroundTint="?attr/colorPrimary"
             app:fabAlignmentMode="center"
             app:navigationIconTint="@color/white"
             app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
+            style="@style/FloatActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_anchor="@id/bottomAppBar"
-            android:backgroundTint="@color/red_900"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            app:tint="@color/white"
             android:contentDescription="@string/content_вescription_floatingactionbutton" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
