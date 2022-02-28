@@ -1,13 +1,13 @@
 package com.example.materialdesign.ui.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.BottomNavigationLayoutBinding
+import com.example.materialdesign.ui.bottomnavigation.ApiBottomActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
@@ -28,17 +28,12 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         binding.navigationView.setNavigationItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.navigation_one -> {
-                    toast(getString(R.string.empty_one))
+                    startActivity(Intent(requireContext(), ApiBottomActivity::class.java))
                 }
                 R.id.navigation_two -> {
-                    toast(getString(R.string.empty_two))
                 }
             }
             true
         }
-    }
-
-    private fun Fragment.toast(text: String?) {
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 }
