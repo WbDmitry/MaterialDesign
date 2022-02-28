@@ -24,6 +24,7 @@
     <string name="text_earth">Earth</string>
     <string name="text_mars">Mars</string>
     <string name="text_system">System</string>
+    <string name="empty_image_gb">image_gb</string>
 
     <style name="myTabStyle" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabRippleColor">@color/white</item>
