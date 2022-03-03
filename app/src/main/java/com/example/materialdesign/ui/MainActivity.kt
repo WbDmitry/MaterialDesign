@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.materialdesign.R
-import com.example.materialdesign.databinding.ActivityApiBottomBinding
 import com.example.materialdesign.databinding.ActivityMainBinding
 import com.example.materialdesign.ui.main.MainFragment
 import com.example.materialdesign.ui.settings.SettingsFragment
@@ -28,47 +28,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(
-                    R.id.container,
-                    MainFragment()
-                ).commit()
+            openFragment(MainFragment())
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_view_image_day -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, MainFragment()).commit()
+                    openFragment(MainFragment())
                     true
                 }
 
                 R.id.bottom_view_earth -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, EarthFragment()).commit()
+                    openFragment(EarthFragment())
                     true
                 }
 
                 R.id.bottom_view_mars -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, MarsFragment()).commit()
+                    openFragment(MarsFragment())
                     true
                 }
 
                 R.id.bottom_view_system -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, SystemFragment()).commit()
+                    openFragment(SystemFragment())
                     true
                 }
 
                 R.id.bottom_view_settings -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, SettingsFragment()).commit()
+                    openFragment(SettingsFragment())
                     true
                 }
 
                 else -> true
             }
         }
+    }
+
+    fun openFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment).commit()
     }
 }

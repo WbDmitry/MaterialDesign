@@ -7,14 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.model.repository.AppState
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainFragment : Fragment() {
 
@@ -25,8 +23,6 @@ class MainFragment : Fragment() {
     private val viewModel: MainFragmentViewModel by lazy {
         ViewModelProvider(this).get(MainFragmentViewModel::class.java)
     }
-
-    lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,10 +80,6 @@ class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
-
-        var isMain = true
-
         const val URL_WIKI = "https://en.wikipedia.org/wiki/"
-        const val LOG_STRING = "mylogs"
     }
 }
