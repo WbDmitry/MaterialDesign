@@ -11,14 +11,14 @@
             android:title="@string/text_earth" />
 
     <item
-            android:id="@+id/bottom_view_mars"
-            android:icon="@drawable/ic_mars"
-            android:title="@string/text_mars" />
+            android:id="@+id/bottom_view_constraint_layout"
+            android:icon="@drawable/ic_baseline_aspect_ratio_24"
+            android:title="@string/constraintlayout" />
 
     <item
-            android:id="@+id/bottom_view_system"
-            android:icon="@drawable/ic_system"
-            android:title="@string/text_system" />
+            android:id="@+id/bottom_view_collapsing_toolbar"
+            android:icon="@drawable/ic_baseline_animation_24"
+            android:title="@string/collapsingtoolbar" />
 
     <item
             android:id="@+id/bottom_view_settings"
