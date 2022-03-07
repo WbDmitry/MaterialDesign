@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.constrain.ConstraintTestFragment">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/textTitleBottomSheet"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/barrier1"
+            android:text="Нажимайте кнопки"/>
+
+    <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="button_plus1, button_plus2, button_plus3" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_plus_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="button_plus1, button_plus2, button_plus3" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.1"
+            android:id="@+id/button_plus1"
+            app:layout_constraintWidth_percent="0.2"
+            android:text="+1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/button_plus2"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintHeight_percent="0.1"
+            android:text="+2"
+            android:id="@+id/button_plus2"
+            app:layout_constraintStart_toEndOf="@+id/button_plus1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/button_plus3"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintHeight_percent="0.1"
+            android:text="+3"
+            android:id="@+id/button_plus3"
+            app:layout_constraintStart_toEndOf="@+id/button_plus2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="80sp"
+            style="@style/textTitleBottomSheet"
+            app:layout_constraintBottom_toTopOf="@+id/button_minus2"
+            app:layout_constraintTop_toBottomOf="@+id/button_plus2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_minus_button"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="button_minus1, button_minus2, button_minus3" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.1"
+            android:id="@+id/button_minus1"
+            app:layout_constraintWidth_percent="0.2"
+            android:text="-1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/button_minus2"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintHeight_percent="0.1"
+            android:text="-2"
+            android:id="@+id/button_minus2"
+            app:layout_constraintStart_toEndOf="@+id/button_minus1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/button_minus3"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintHeight_percent="0.1"
+            android:text="-3"
+            android:id="@+id/button_minus3"
+            app:layout_constraintStart_toEndOf="@+id/button_minus2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

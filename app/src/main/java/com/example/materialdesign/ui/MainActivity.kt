@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.ActivityMainBinding
+import com.example.materialdesign.ui.constrain.ConstraintTestFragment
 import com.example.materialdesign.ui.main.MainFragment
 import com.example.materialdesign.ui.settings.SettingsFragment
 import com.example.materialdesign.ui.viewpager.EarthFragment
@@ -43,8 +44,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.bottom_view_mars -> {
-                    openFragment(MarsFragment())
+                R.id.bottom_view_constraint_layout -> {
+                    openFragment(ConstraintTestFragment())
                     true
                 }
 
@@ -65,6 +66,6 @@ class MainActivity : AppCompatActivity() {
 
     fun openFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, fragment).commit()
+            .replace(R.id.container, fragment).addToBackStack("").commit()
     }
 }
