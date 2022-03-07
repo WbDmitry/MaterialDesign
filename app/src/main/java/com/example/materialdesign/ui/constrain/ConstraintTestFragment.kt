@@ -1,12 +1,10 @@
 package com.example.materialdesign.ui.constrain
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.materialdesign.R
+import androidx.fragment.app.Fragment
 import com.example.materialdesign.databinding.FragmentConstraintTestBinding
 
 class ConstraintTestFragment : Fragment() {
@@ -45,7 +43,7 @@ class ConstraintTestFragment : Fragment() {
         }
     }
 
-    private fun setTextInTextViewPlus (i: Int) {
+    private fun setTextInTextViewPlus(i: Int) {
         val sum = binding.result.text.toString().toInt()
         val total = sum + i
         binding.result.text = total.toString()
@@ -53,7 +51,7 @@ class ConstraintTestFragment : Fragment() {
         binding.groupMinusButton.visibility = View.VISIBLE
     }
 
-    private fun setTextInTextViewMinus (i: Int) {
+    private fun setTextInTextViewMinus(i: Int) {
         val sum = binding.result.text.toString().toInt()
         val total = sum - i
         binding.result.text = total.toString()
