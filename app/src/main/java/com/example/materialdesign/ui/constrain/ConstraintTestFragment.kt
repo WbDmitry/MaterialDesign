@@ -22,44 +22,49 @@ class ConstraintTestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonMinus1.setOnClickListener {
-            setTextInTextViewMinus(1)
+            setTextInTextViewPlus(ONE, "")
         }
 
         binding.buttonMinus2.setOnClickListener {
-            setTextInTextViewMinus(2)
+            setTextInTextViewPlus(TWO, "")
         }
         binding.buttonMinus3.setOnClickListener {
-            setTextInTextViewMinus(3)
+            setTextInTextViewPlus(THREE, "")
         }
 
         binding.buttonPlus1.setOnClickListener {
-            setTextInTextViewPlus(1)
+            setTextInTextViewPlus(ONE, PLUS)
         }
         binding.buttonPlus2.setOnClickListener {
-            setTextInTextViewPlus(2)
+            setTextInTextViewPlus(TWO, PLUS)
         }
         binding.buttonPlus3.setOnClickListener {
-            setTextInTextViewPlus(3)
+            setTextInTextViewPlus(THREE, PLUS)
         }
     }
 
-    private fun setTextInTextViewPlus(i: Int) {
+    private fun setTextInTextViewPlus(i: Int, operation: String) {
         val sum = binding.result.text.toString().toInt()
-        val total = sum + i
+        val total: Int
+        if (operation == PLUS) {
+                total = sum + i
+                binding.groupPlusButton.visibility = View.INVISIBLE
+                binding.groupMinusButton.visibility = View.VISIBLE
+            } else {
+                total = sum - i
+                binding.groupPlusButton.visibility = View.VISIBLE
+                binding.groupMinusButton.visibility = View.INVISIBLE
+            }
         binding.result.text = total.toString()
-        binding.groupPlusButton.visibility = View.INVISIBLE
-        binding.groupMinusButton.visibility = View.VISIBLE
-    }
-
-    private fun setTextInTextViewMinus(i: Int) {
-        val sum = binding.result.text.toString().toInt()
-        val total = sum - i
-        binding.result.text = total.toString()
-        binding.groupPlusButton.visibility = View.VISIBLE
-        binding.groupMinusButton.visibility = View.INVISIBLE
     }
 
     companion object {
+        const val ONE = 1
+        const val TWO = 2
+        const val THREE = 3
+        const val PLUS = "+"
+
         fun newInstance() = ConstraintTestFragment()
+
     }
 }
