@@ -17,6 +17,7 @@
         <item name="colorTertiaryContainer">?attr/accentColor</item>
         <item name="colorOnTertiaryContainer">?attr/accentColor</item>
         <item name="android:statusBarColor">?attr/accentColor</item>
+        <item name="tabStyle">@style/myTabStyle</item>
     </style>
 
     <style name="MaterialDesignBlue" parent="Theme.MaterialDesignBase">
@@ -42,7 +43,4 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="FloatActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">@color/pink</item>
-    </style>
 </resources>

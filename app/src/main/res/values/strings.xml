@@ -12,7 +12,7 @@
     <string name="empty_text_title">Two Clusters and a Comet</string>
     <string name="empty_one">navigation_one</string>
     <string name="empty_two">navigation_two</string>
-    <string name="content_вescription_floatingactionbutton">FloatingActionButton</string>
+    <string name="content_description_floatingactionbutton">FloatingActionButton</string>
     <string name="text_today">Сегодня</string>
     <string name="text_yesterday">Вчера</string>
     <string name="text_he_day_before_yesterday">Позавчера</string>
@@ -21,4 +21,17 @@
     <string name="theme_name_1">Theme 1</string>
     <string name="theme_name_2">Theme 2</string>
     <string name="theme_name_3">Theme 3</string>
+    <string name="text_earth">Earth</string>
+    <string name="text_mars">Mars</string>
+    <string name="text_system">System</string>
+    <string name="empty_image_gb">image_gb</string>
+
+    <style name="myTabStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabRippleColor">@color/white</item>
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">@color/white</item>
+        <item name="tabIconTint">@color/white</item>
+    </style>
+
 </resources>
