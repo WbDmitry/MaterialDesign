@@ -16,9 +16,9 @@
             android:title="@string/constraintlayout" />
 
     <item
-            android:id="@+id/bottom_view_system"
-            android:icon="@drawable/ic_system"
-            android:title="@string/text_system" />
+            android:id="@+id/bottom_view_collapsing_toolbar"
+            android:icon="@drawable/ic_baseline_animation_24"
+            android:title="@string/collapsingtoolbar" />
 
     <item
             android:id="@+id/bottom_view_settings"
