@@ -1,5 +1,6 @@
 package com.example.materialdesign.ui.notes
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import com.example.materialdesign.model.NotesEntity
 class NotesAdapter(
     private val onListItemClickListener: OnListItemClickListener,
     private var notesData: MutableList<Pair<Boolean, NotesEntity>>
-) : RecyclerView.Adapter<NotesAdapter.NotesHolder>() {
+) : RecyclerView.Adapter<NotesAdapter.NotesHolder>(), ItemTouchHelperAdapter {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NotesHolder(
@@ -27,7 +28,7 @@ class NotesAdapter(
     override fun getItemCount(): Int = notesData.size
 
     inner class NotesHolder(private val binding: FragmentNotesItemListBinding) :
-        ViewHolder(binding.root) {
+        ViewHolder(binding.root), ItemTouchHelperViewAdapter {
         fun bind(notes: Pair<Boolean, NotesEntity>) = with(binding) {
 
             noteTitleTextView.text = notes.second.note_title
@@ -57,7 +58,7 @@ class NotesAdapter(
         }
 
         private fun moveUp() {
-            layoutPosition.takeIf { it > 1 }?.also { currentPosition ->
+            layoutPosition.takeIf { it > 0 }?.also { currentPosition ->
                 notesData.removeAt(currentPosition).apply {
                     notesData.add(currentPosition - 1, this)
                 }
@@ -73,5 +74,26 @@ class NotesAdapter(
                 notifyItemMoved(currentPosition, currentPosition + 1)
             }
         }
+
+        override fun onItemSelector() {
+            itemView.setBackgroundColor(Color.GRAY)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+
+        }
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        notesData.removeAt(fromPosition).apply {
+            notesData.add(toPosition, this)
+        }
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    override fun onItemDismiss(position: Int) {
+        notesData.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

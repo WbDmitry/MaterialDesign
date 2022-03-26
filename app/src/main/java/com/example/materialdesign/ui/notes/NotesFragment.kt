@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.materialdesign.databinding.FragmentNotesBinding
 import com.example.materialdesign.model.ITEM_CLOSE
 import com.example.materialdesign.model.NotesEntity
@@ -15,6 +17,8 @@ class NotesFragment : Fragment() {
     private var _binding: FragmentNotesBinding? = null
     private val binding: FragmentNotesBinding
         get() = _binding!!
+
+    private lateinit var adapter: NotesAdapter
 
     private val notesList = arrayListOf(
         Pair(ITEM_CLOSE, NotesEntity("Title 1", "Description 1")),
@@ -39,10 +43,15 @@ class NotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.notesRecyclerView.adapter = NotesAdapter({
+
+        adapter = NotesAdapter({
             Toast.makeText(context, it.note_title + "\n" + it.note_description, Toast.LENGTH_SHORT)
                 .show()
         }, notesList)
+
+        binding.notesRecyclerView.adapter = adapter
+
+        ItemTouchHelper(ItemTouchHelperCallBack(adapter)).attachToRecyclerView(binding.notesRecyclerView)
     }
 
     override fun onDestroy() {
@@ -53,5 +62,43 @@ class NotesFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = NotesFragment()
+    }
+
+    class ItemTouchHelperCallBack(private val adapter: NotesAdapter) : ItemTouchHelper.Callback() {
+
+
+        override fun getMovementFlags(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder
+        ): Int {
+            val drag = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+            val swipe = ItemTouchHelper.START
+            return makeMovementFlags(drag, swipe)
+        }
+
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            adapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            adapter.onItemDismiss(viewHolder.adapterPosition)
+        }
+
+        override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+            if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
+                (viewHolder as ItemTouchHelperViewAdapter).onItemSelector()
+            }
+            super.onSelectedChanged(viewHolder, actionState)
+        }
+
+        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            (viewHolder as ItemTouchHelperViewAdapter).onItemClear()
+            super.clearView(recyclerView, viewHolder)
+        }
     }
 }
