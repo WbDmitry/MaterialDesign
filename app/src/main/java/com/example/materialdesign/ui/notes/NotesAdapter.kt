@@ -1,9 +1,12 @@
 package com.example.materialdesign.ui.notes
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.materialdesign.databinding.FragmentNotesItemListBinding
@@ -11,7 +14,8 @@ import com.example.materialdesign.model.NotesEntity
 
 class NotesAdapter(
     private val onListItemClickListener: OnListItemClickListener,
-    private var notesData: MutableList<Pair<Boolean, NotesEntity>>
+    private var notesData: MutableList<Pair<Boolean, NotesEntity>>,
+    private val onStartDragListener: OnStartDragListener
 ) : RecyclerView.Adapter<NotesAdapter.NotesHolder>(), ItemTouchHelperAdapter {
 
 
@@ -29,6 +33,7 @@ class NotesAdapter(
 
     inner class NotesHolder(private val binding: FragmentNotesItemListBinding) :
         ViewHolder(binding.root), ItemTouchHelperViewAdapter {
+        @SuppressLint("ClickableViewAccessibility")
         fun bind(notes: Pair<Boolean, NotesEntity>) = with(binding) {
 
             noteTitleTextView.text = notes.second.note_title
@@ -55,6 +60,13 @@ class NotesAdapter(
             }
             noteDescriptionTextView.visibility =
                 if (notes.first) View.GONE else View.VISIBLE
+
+            dragNDropImageView.setOnTouchListener { view, motionEvent ->
+                if (MotionEventCompat.getActionMasked(motionEvent) == MotionEvent.ACTION_DOWN) {
+                    onStartDragListener.onStartDrag(this@NotesHolder)
+                }
+                false
+            }
         }
 
         private fun moveUp() {

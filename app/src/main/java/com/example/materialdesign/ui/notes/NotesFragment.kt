@@ -19,6 +19,7 @@ class NotesFragment : Fragment() {
         get() = _binding!!
 
     private lateinit var adapter: NotesAdapter
+    private lateinit var itemTouchHelper: ItemTouchHelper
 
     private val notesList = arrayListOf(
         Pair(ITEM_CLOSE, NotesEntity("Title 1", "Description 1")),
@@ -47,11 +48,14 @@ class NotesFragment : Fragment() {
         adapter = NotesAdapter({
             Toast.makeText(context, it.note_title + "\n" + it.note_description, Toast.LENGTH_SHORT)
                 .show()
-        }, notesList)
+        }, notesList, {
+            itemTouchHelper.startDrag(it)
+        })
 
         binding.notesRecyclerView.adapter = adapter
+        itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallBack(adapter))
+        itemTouchHelper.attachToRecyclerView(binding.notesRecyclerView)
 
-        ItemTouchHelper(ItemTouchHelperCallBack(adapter)).attachToRecyclerView(binding.notesRecyclerView)
     }
 
     override fun onDestroy() {
@@ -65,7 +69,6 @@ class NotesFragment : Fragment() {
     }
 
     class ItemTouchHelperCallBack(private val adapter: NotesAdapter) : ItemTouchHelper.Callback() {
-
 
         override fun getMovementFlags(
             recyclerView: RecyclerView,

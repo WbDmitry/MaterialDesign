@@ -9,3 +9,7 @@ interface ItemTouchHelperViewAdapter {
     fun onItemSelector()
     fun onItemClear()
 }
+
+fun interface OnStartDragListener {
+    fun onStartDrag(notesHolder: NotesAdapter.NotesHolder)
+}
