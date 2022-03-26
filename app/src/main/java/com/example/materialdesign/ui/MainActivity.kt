@@ -10,6 +10,7 @@ import com.example.materialdesign.databinding.ActivityMainBinding
 import com.example.materialdesign.ui.collapsingtoolbar.CollapsingToolbarFragment
 import com.example.materialdesign.ui.constrain.ConstraintTestFragment
 import com.example.materialdesign.ui.main.MainFragment
+import com.example.materialdesign.ui.notes.NotesFragment
 import com.example.materialdesign.ui.settings.SettingsFragment
 import com.example.materialdesign.ui.viewpager.EarthFragment
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            openFragment(MainFragment())
+            openFragment(NotesFragment())
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener {
