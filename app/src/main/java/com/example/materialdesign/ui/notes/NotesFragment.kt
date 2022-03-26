@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.materialdesign.databinding.FragmentNotesBinding
+import com.example.materialdesign.model.ITEM_CLOSE
 import com.example.materialdesign.model.NotesEntity
 
 class NotesFragment : Fragment() {
@@ -16,15 +17,15 @@ class NotesFragment : Fragment() {
         get() = _binding!!
 
     private val notesList = arrayListOf(
-        NotesEntity("Title 1", "Description 1"),
-        NotesEntity("Title 2", "Description 2"),
-        NotesEntity("Title 3", "Description 3"),
-        NotesEntity("Title 4", "Description 4"),
-        NotesEntity("Title 5", "Description 5"),
-        NotesEntity("Title 6", "Description 6"),
-        NotesEntity("Title 7", "Description 7"),
-        NotesEntity("Title 8", "Description 8"),
-        NotesEntity("Title 9", "Description 9"),
+        Pair(ITEM_CLOSE, NotesEntity("Title 1", "Description 1")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 2", "Description 2")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 3", "Description 3")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 4", "Description 4")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 5", "Description 5")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 6", "Description 6")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 7", "Description 7")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 8", "Description 8")),
+        Pair(ITEM_CLOSE, NotesEntity("Title 9", "Description 9"))
     )
 
     override fun onCreateView(

@@ -4,37 +4,73 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.materialdesign.databinding.FragmentNotesItemListBinding
 import com.example.materialdesign.model.NotesEntity
 
 class NotesAdapter(
     private val onListItemClickListener: OnListItemClickListener,
-    private var notesData: List<NotesEntity>
+    private var notesData: MutableList<Pair<Boolean, NotesEntity>>
 ) : RecyclerView.Adapter<NotesAdapter.NotesHolder>() {
 
-    private lateinit var binding: FragmentNotesItemListBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesHolder {
-        binding = FragmentNotesItemListBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NotesHolder(
+        FragmentNotesItemListBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
         )
-        return NotesHolder(binding.root)
-    }
+    )
 
     override fun onBindViewHolder(holder: NotesHolder, position: Int) {
         holder.bind(notesData[position])
-        holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int = notesData.size
 
-    inner class NotesHolder(item: View) : RecyclerView.ViewHolder(item) {
-        fun bind(notes: NotesEntity) = with(binding) {
-            noteTitleTextView.text = notes.note_title
+    inner class NotesHolder(private val binding: FragmentNotesItemListBinding) :
+        ViewHolder(binding.root) {
+        fun bind(notes: Pair<Boolean, NotesEntity>) = with(binding) {
+
+            noteTitleTextView.text = notes.second.note_title
+            noteDescriptionTextView.text = notes.second.note_description
+
             dragNDropImageView.setOnClickListener {
-                onListItemClickListener.onItemClick(notes)
+                onListItemClickListener.onItemClick(notes.second)
+            }
+
+            upArrowImageView.setOnClickListener {
+                moveUp()
+            }
+
+            downArrowImageView.setOnClickListener {
+                moveDown()
+            }
+
+            noteTitleTextView.setOnClickListener {
+                notesData[layoutPosition] = notesData[layoutPosition].let {
+                    val currentState = if (it.first) !it.first else !it.first
+                    Pair(currentState, it.second)
+                }
+                notifyItemChanged(layoutPosition)
+            }
+            noteDescriptionTextView.visibility =
+                if (notes.first) View.GONE else View.VISIBLE
+        }
+
+        private fun moveUp() {
+            layoutPosition.takeIf { it > 1 }?.also { currentPosition ->
+                notesData.removeAt(currentPosition).apply {
+                    notesData.add(currentPosition - 1, this)
+                }
+                notifyItemMoved(currentPosition, currentPosition - 1)
+            }
+        }
+
+        private fun moveDown() {
+            layoutPosition.takeIf { it < notesData.size - 1 }?.also { currentPosition ->
+                notesData.removeAt(currentPosition).apply {
+                    notesData.add(currentPosition + 1, this)
+                }
+                notifyItemMoved(currentPosition, currentPosition + 1)
             }
         }
     }
