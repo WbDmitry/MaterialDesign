@@ -10,52 +10,52 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
         android:text="Шрифт из папки Asset (Main) через код:"
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:padding="@dimen/padding"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/font_1_text_1_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
         android:text="@string/empty_text_title"
         android:textAlignment="center"
-        android:padding="@dimen/padding"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
         android:text="Шрифт из папки R.font через код:"
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:padding="@dimen/padding"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/font_2_text_1_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding"
-        android:textStyle="bold"
-        android:textSize="18sp"
+        android:text="@string/empty_text_description"
         android:textAlignment="center"
-        android:text="@string/empty_text_description" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
         android:text="Шрифт из библиотеки Google:"
         android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:padding="@dimen/padding"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/font_3_text_1_text_view"
@@ -68,5 +68,23 @@
         android:textStyle="bold"
         app:fontFamily="@font/bungee_shade" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="@dimen/padding"
+        android:text="Spans:"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/spans_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
+        android:text="@string/empty_text_description"
+        android:textAlignment="center" />
 
 </LinearLayout>
