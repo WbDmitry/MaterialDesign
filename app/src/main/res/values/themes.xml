@@ -36,11 +36,28 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_size_title_bottom_sheet_21sp</item>
         <item name="android:textColor">?colorPrimary</item>
+        <item name="fontFamily">@font/mightsilly_bwny_b</item>
+
+    </style>
+
+    <style name="textStyleTitleNotes" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_title_bottom_sheet_21sp</item>
+        <item name="fontFamily">@font/mightsilly_bwny_b</item>
+
+    </style>
+
+    <style name="textStyleDescriptionNotes" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">@dimen/text_size_description_bottom_sheet_16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/mightsilly_bwny_b</item>
+
     </style>
 
     <style name="textDescriptionBottomSheet" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="android:textSize">@dimen/text_size_description_bottom_sheet_16sp</item>
         <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/mightsilly_bwny_b</item>
     </style>
 
 </resources>
