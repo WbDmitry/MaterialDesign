@@ -16,9 +16,10 @@ class MainFragmentViewModel(
     private val pdoRetrofitImpl: PDORetrofitImpl = PDORetrofitImpl()
 ) : ViewModel() {
     fun getData(): LiveData<AppState> = liveData
-    fun sendRequest() {
+
+    fun sendRequest(date:String) {
         liveData.postValue(AppState.Loading(null))
-        pdoRetrofitImpl.getRetrofitImpl().getPictureOfTheDay(BuildConfig.NASA_API_KEY)
+        pdoRetrofitImpl.getRetrofitImpl().getPictureOfTheDay(BuildConfig.NASA_API_KEY, date)
             .enqueue(object : Callback<PDOServerResponse> {
                 override fun onResponse(
                     call: Call<PDOServerResponse>,
@@ -28,7 +29,6 @@ class MainFragmentViewModel(
                         response.body()?.let {
                             liveData.postValue(AppState.Success(it))
                         }
-
                     } else {
                         val message = response.message()
                         if (message.isNullOrEmpty()) {
