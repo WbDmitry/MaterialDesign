@@ -1,6 +1,9 @@
 package com.example.materialdesign.ui.main
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
+import android.icu.util.TimeZone
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +16,7 @@ import coil.load
 import com.example.materialdesign.R
 import com.example.materialdesign.databinding.FragmentMainBinding
 import com.example.materialdesign.model.repository.AppState
+import java.util.*
 
 class MainFragment : Fragment() {
 
@@ -34,10 +38,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getData().observe(viewLifecycleOwner, {
+        viewModel.getData().observe(viewLifecycleOwner) {
             renderData(it)
-        })
-        viewModel.sendRequest()
+        }
+        viewModel.sendRequest(takeDate(0))
 
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
@@ -48,6 +52,25 @@ class MainFragment : Fragment() {
                     )
             })
         }
+        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.today ->{viewModel.sendRequest(takeDate(0))}
+                R.id.minus1day ->{viewModel.sendRequest(takeDate(-1))}
+                R.id.minus2day ->{viewModel.sendRequest(takeDate(-2))}
+                R.id.minus3day ->{viewModel.sendRequest(takeDate(-3))}
+                R.id.minus4day ->{viewModel.sendRequest(takeDate(-4))}
+                R.id.minus5day ->{viewModel.sendRequest(takeDate(-5))}
+
+            }
+        }
+    }
+
+    private fun takeDate(count: Int): String {
+        val currentDate = Calendar.getInstance()
+        currentDate.add(Calendar.DAY_OF_MONTH, count)
+        val format1 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        format1.timeZone = TimeZone.getTimeZone("EST")
+        return format1.format(currentDate.time)
     }
 
     private fun renderData(appState: AppState) {
